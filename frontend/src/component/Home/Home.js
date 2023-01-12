@@ -5,25 +5,32 @@ import "./Home.css"
 import MetaData from '../layout/MetaData'
 import { getProduct } from '../../actions/productAction.js'
 import {useSelector, useDispatch } from "react-redux"
+import Loader from '../layout/loader/Loader.js'
+import { useAlert } from 'react-alert'
 
 
-const product={
-  name: "Blue Tshirt",
-  images: [{ url: "https://outoforder.in/wp-content/uploads/2020/03/Womens-Blue-T-shirt-1.jpg" }],
-  price: "3000Rs",
-  _id: "abhishek",
-};
 
 const Home = () => {
+
+  const alert = useAlert()
   const dispatch = useDispatch();
+  const {loading, error, products, productsCount} = useSelector(state=>state.products)
 
 useEffect(() => {
+  if(error){
+    return alert.error(error)
+  }
   dispatch(getProduct())
 }, [dispatch])
 
 
   return (
   <Fragment>
+
+    {loading ? ( 
+      <Loader /> 
+    ) : (
+    <Fragment>
     <MetaData title="Ecommerce" />
     <div className='banner'>
       <p>Welcome to Ecommerce</p>
@@ -40,16 +47,12 @@ useEffect(() => {
     <h2 className='homeHeading'>Featured Products</h2>
 
     <div className='container' id='container'>
-      <Product product={product} />
-      <Product product={product} />
-      <Product product={product} />
-      <Product product={product} />
-      
-      <Product product={product} />
-      <Product product={product} />
-      <Product product={product} />
-      <Product product={product} />
+    {products &&products.map(product => (
+        <Product product={product} />
+      ))}
     </div>
+  </Fragment>
+  )}
   </Fragment>
   )
 }
