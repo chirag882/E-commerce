@@ -21,7 +21,7 @@ useEffect(() => {
     return alert.error(error)
   }
   dispatch(getProduct())
-}, [dispatch])
+}, [dispatch, error, alert])
 
 
   return (
