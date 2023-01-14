@@ -3,12 +3,13 @@ import { legacy_createStore as createStore} from 'redux'
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension"
 import { productDetailsReducer, productsReducer } from "./reducers/productReducer";
-import { userReducer } from "./reducers/userReducer";
+import { profileReducer, userReducer } from "./reducers/userReducer";
 
 const reducer = combineReducers({
     products: productsReducer,
     productDetails: productDetailsReducer,
     user: userReducer,
+    profile: profileReducer,
 });
 
 let initialState = {};
