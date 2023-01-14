@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 import "./Products.css";
+import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { clearErrors, getProduct } from "../../actions/productAction";
 import Loader from "../layout/Loader/Loader";
@@ -22,6 +23,7 @@ const categories = [
 
 const Products = ({ match }) => {
   const dispatch = useDispatch();
+  
 
   const alert = useAlert();
 
@@ -39,8 +41,8 @@ const Products = ({ match }) => {
     resultPerPage,
     filteredProductsCount,
   } = useSelector((state) => state.products);
-
-  const keyword = match.params.keyword;
+  const params = useParams()
+  const keyword = params.keyword;
 
   const setCurrentPageNo = (e) => {
     setCurrentPage(e);
