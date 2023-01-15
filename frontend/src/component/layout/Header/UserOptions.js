@@ -13,25 +13,16 @@ import { logout } from "../../../actions/userAction";
 import { useDispatch, useSelector } from "react-redux";
 
 const UserOptions = ({ user }) => {
-  const { cartItems } = useSelector((state) => state.cart);
 
   const [open, setOpen] = useState(false);
-  const history = useNavigate();
+  const navigate = useNavigate();
   const alert = useAlert();
   const dispatch = useDispatch();
 
   const options = [
     { icon: <ListAltIcon />, name: "Orders", func: orders },
     { icon: <PersonIcon />, name: "Profile", func: account },
-    {
-      icon: (
-        <ShoppingCartIcon
-          style={{ color: cartItems.length > 0 ? "tomato" : "unset" }}
-        />
-      ),
-      name: `Cart(${cartItems.length})`,
-      func: cart,
-    },
+    
     { icon: <ExitToAppIcon />, name: "Logout", func: logoutUser },
   ];
 
@@ -44,17 +35,17 @@ const UserOptions = ({ user }) => {
   }
 
   function dashboard() {
-    history.push("/admin/dashboard");
+    navigate("/admin/dashboard");
   }
 
   function orders() {
-    history.push("/orders");
+    navigate("/orders");
   }
   function account() {
-    history.push("/account");
+    navigate("/account");
   }
   function cart() {
-    history.push("/cart");
+    navigate("/cart");
   }
   function logoutUser() {
     dispatch(logout());

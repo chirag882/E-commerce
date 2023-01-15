@@ -49,7 +49,7 @@ const UpdateProfile = ({ history }) => {
     if (user) {
       setName(user.name);
       setEmail(user.email);
-      setAvatarPreview(user.avatar.url);
+      
     }
 
     if (error) {
