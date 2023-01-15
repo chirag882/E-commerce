@@ -11,7 +11,7 @@ const ProductCard = ({ product }) => {
     color: "rgba(20,20,20,0.1)",
     activeColor: "tomato",
     size: window.innerWidth < 600 ? 20: 25,
-    value: product.rating,
+    value: product.ratings,
     isHalf: true,
 }
   return (
@@ -20,7 +20,7 @@ const ProductCard = ({ product }) => {
         <p>{product.name}</p>
         <div>
             <ReactStars {...options} /> 
-            <span> ({product.numOfReveiws} Reviews)</span>
+            <span> ({product.numOfReviews} Reviews)</span>
         </div>
         <span>{`₹${product.price}`}</span>
     </Link>
