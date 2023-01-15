@@ -21,8 +21,10 @@ import {
 } from "@material-ui/core";
 import { Rating } from '@mui/material';
 import { NEW_REVIEW_RESET } from "../../constants/productConstants";
+import { useParams } from "react-router-dom";
 
 const ProductDetails = ({ match }) => {
+  const params = useParams()
   const dispatch = useDispatch();
   const alert = useAlert();
 
@@ -30,9 +32,7 @@ const ProductDetails = ({ match }) => {
     (state) => state.productDetails
   );
 
-  const { success, error: reviewError } = useSelector(
-    (state) => state.newReview
-  );
+  
 
   const options = {
     size: "large",
@@ -61,8 +61,8 @@ const ProductDetails = ({ match }) => {
   };
 
   const addToCartHandler = () => {
-//    dispatch(addItemsToCart(match.params.id, quantity));
-//    alert.success("Item Added To Cart");
+    dispatch(addItemsToCart(match.params.id, quantity));
+    alert.success("Item Added To Cart");
   };
 
   const submitReviewToggle = () => {
@@ -81,23 +81,7 @@ const ProductDetails = ({ match }) => {
     setOpen(false);
   };
 
-  useEffect(() => {
-    if (error) {
-      alert.error(error);
-      dispatch(clearErrors());
-    }
-
-    if (reviewError) {
-      alert.error(reviewError);
-      dispatch(clearErrors());
-    }
-
-    if (success) {
-      alert.success("Review Submitted Successfully");
-      dispatch({ type: NEW_REVIEW_RESET });
-    }
-    dispatch(getProductDetails(match.params.id));
-  }, [dispatch, match.params.id, error, alert, reviewError, success]);
+ 
 
   return (
     <Fragment>
