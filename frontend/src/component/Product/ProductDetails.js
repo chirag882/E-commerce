@@ -32,7 +32,10 @@ const ProductDetails = ({ match }) => {
     (state) => state.productDetails
   );
 
-  
+  const { success, error: reviewError } = useSelector(
+    (state) => state.newReview
+  );
+
 
   const options = {
     size: "large",
@@ -61,7 +64,7 @@ const ProductDetails = ({ match }) => {
   };
 
   const addToCartHandler = () => {
-    dispatch(addItemsToCart(match.params.id, quantity));
+    dispatch(addItemsToCart(params.id, quantity));
     alert.success("Item Added To Cart");
   };
 
@@ -74,12 +77,30 @@ const ProductDetails = ({ match }) => {
 
     myForm.set("rating", rating);
     myForm.set("comment", comment);
-    myForm.set("productId", match.params.id);
+    myForm.set("productId", params.id);
 
     dispatch(newReview(myForm));
 
     setOpen(false);
   };
+
+  useEffect(() => {
+    if (error) {
+      alert.error(error);
+      dispatch(clearErrors());
+    }
+
+    if (reviewError) {
+      alert.error(reviewError);
+      dispatch(clearErrors());
+    }
+
+    if (success) {
+      alert.success("Review Submitted Successfully");
+      dispatch({ type: NEW_REVIEW_RESET });
+    }
+    dispatch(getProductDetails(params.id));
+  }, [dispatch, params.id, error, alert, reviewError, success]);
 
  
 
