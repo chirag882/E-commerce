@@ -14,6 +14,8 @@ import { useDispatch, useSelector } from "react-redux";
 
 const UserOptions = ({ user }) => {
 
+  const{ cartItems } = useSelector((state) => state.cart)
+
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
   const alert = useAlert();
@@ -22,7 +24,7 @@ const UserOptions = ({ user }) => {
   const options = [
     { icon: <ListAltIcon />, name: "Orders", func: orders },
     { icon: <PersonIcon />, name: "Profile", func: account },
-    
+    { icon: <ShoppingCartIcon />, name: `Cart(${cartItems.length})`, func: cart },
     { icon: <ExitToAppIcon />, name: "Logout", func: logoutUser },
   ];
 
