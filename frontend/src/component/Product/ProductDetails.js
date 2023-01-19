@@ -34,9 +34,9 @@ const ProductDetails = ({ match }) => {
     (state) => state.productDetails
   );
 
-  // const { success, error: reviewError } = useSelector(
-  //   (state) => state.newReview
-  // );
+  const { success, error: reviewError } = useSelector(
+    (state) => state.newReview
+  );
 
 
   const options = {
@@ -87,22 +87,22 @@ const ProductDetails = ({ match }) => {
   };
 
   useEffect(() => {
-    // if (error) {
-    //   alert.error(error);
-    //   dispatch(clearErrors());
-    // }
+    if (error) {
+      alert.error(error);
+      dispatch(clearErrors());
+    }
 
-    // if (reviewError) {
-    //   alert.error(reviewError);
-    //   dispatch(clearErrors());
-    // }
+    if (reviewError) {
+      alert.error(reviewError);
+      dispatch(clearErrors());
+    }
 
-//    if (success) {
+    if (success) {
       alert.success("Review Submitted Successfully");
       dispatch({ type: NEW_REVIEW_RESET });
-//    }
+    }
     dispatch(getProductDetails(params.id));
-  }, [dispatch, params.id, error, alert]);
+  }, [dispatch, params.id, error, alert, reviewError, success]);
 
  
 
