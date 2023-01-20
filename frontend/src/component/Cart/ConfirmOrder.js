@@ -5,10 +5,11 @@ import MetaData from "../layout/MetaData";
 import "./ConfirmOrder.css";
 import { Link, useNavigate } from "react-router-dom";
 import { Typography } from "@material-ui/core";
+import Loader from "../layout/Loader/Loader";
 
 const ConfirmOrder = () => {
   const { shippingInfo, cartItems } = useSelector((state) => state.cart);
-  const { user } = useSelector((state) => state.user);
+  const { user, loading } = useSelector((state) => state.user);
   const navigate = useNavigate()
 
   const subtotal = cartItems.reduce(
@@ -39,6 +40,10 @@ const ConfirmOrder = () => {
 
   return (
     <Fragment>
+      {loading ? (
+        <Loader />
+      ) : (
+        <Fragment>
       <MetaData title="Confirm Order" />
       <CheckoutSteps activeStep={1} />
       <div className="confirmOrderPage">
@@ -48,7 +53,7 @@ const ConfirmOrder = () => {
             <div className="confirmshippingAreaBox">
               <div>
                 <p>Name:</p>
-                {/* <span>{user.name}</span> */}
+                <span>{user.name}</span>
               </div>
               <div>
                 <p>Phone:</p>
@@ -110,7 +115,15 @@ const ConfirmOrder = () => {
         </div>
       </div>
     </Fragment>
+      )}
+    </Fragment>
   );
-};
+                }
+                
+
+
+
+  
+
 
 export default ConfirmOrder;

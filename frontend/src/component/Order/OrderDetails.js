@@ -15,7 +15,7 @@ const OrderDetails = ({ match }) => {
   const params = useParams();
   const dispatch = useDispatch();
   const alert = useAlert();
-  const user  = useSelector((state) => state.user);
+  const { user }  = useSelector((state) => state.user);
 
   useEffect(() => {
     if (error) {
@@ -24,7 +24,7 @@ const OrderDetails = ({ match }) => {
     }
 
     dispatch(getOrderDetails(params.id));
-  }, [dispatch, alert, error, params.id]);
+  }, [dispatch, alert, error, user, params.id]);
   return (
     <Fragment>
       {loading ? (

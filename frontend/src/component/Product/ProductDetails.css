@@ -17,6 +17,7 @@
     box-sizing: border-box;
     border: 1px solid white;
   }
+
   
   .ProductDetails > div:last-child {
     align-items: flex-start;
