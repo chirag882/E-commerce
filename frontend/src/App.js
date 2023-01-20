@@ -30,8 +30,15 @@ import OrderDetails from "./component/Order/OrderDetails.js"
 import axios from 'axios';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
-import Dashboard from './component/admin/Dashboard.js';
-import ProductList from './component/admin/ProductList.js';
+import Dashboard from './component/Admin/Dashboard.js';
+import ProductList from './component/Admin/ProductList.js';
+import NewProduct from './component/Admin/NewProduct';
+import UpdateProduct from './component/Admin/UpdateProduct.js';
+import OrderList from './component/Admin/OrderList.js';
+import ProcessOrder from './component/Admin/ProcessOrder';
+import UsersList from './component/Admin/UsersList.js';
+import UpdateUser from './component/Admin/UpdateUser.js';
+import ProductReviews from './component/Admin/ProductReviews.js';
 
 
 function App() {
@@ -87,6 +94,13 @@ function App() {
       <Route exact path="/orders/:id" element={<OrderDetails />} />
       <Route exact path="/admin/dashboard" element={<Dashboard />} />
       <Route exact path="/admin/products" element={<ProductList />} />
+      <Route exact path="/admin/product" element={<NewProduct />} />
+      <Route exact path="/admin/product/:id" element={<UpdateProduct />} />
+      <Route exact path="/admin/orders" element={<OrderList />} />
+      <Route exact path="/admin/orders/:id" element={<ProcessOrder />} />
+      <Route exact path="/admin/users" element={<UsersList />} />
+      <Route exact path="/admin/users/:id" element={<UpdateUser />} />
+      <Route exact path="/admin/reviews" element={<ProductReviews />} />
 
 
 
