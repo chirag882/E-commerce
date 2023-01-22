@@ -54,14 +54,14 @@ const ProductDetails = ({ match }) => {
   const increaseQuantity = () => {
     if (product.Stock <= quantity) return;
 
-    const qty = quantity + 1;
+    var qty = quantity + 1;
     setQuantity(qty);
   };
 
   const decreaseQuantity = () => {
     if (1 >= quantity) return;
 
-    const qty = quantity - 1;
+    var qty = quantity - 1;
     setQuantity(qty);
   };
 
@@ -115,17 +115,15 @@ const ProductDetails = ({ match }) => {
           <MetaData title={`${product.name} -- ECOMMERCE`} />
           <div className="ProductDetails">
             <div>
-              <Carousel>
                 {product.images &&
                   product.images.map((item, i) => (
                     <img
-                      className="CarouselImage"
+                      className="Image"
                       key={i}
                       src={item.url}
                       alt={`${i} Slide`}
                     />
                   ))}
-              </Carousel>
             </div>
 
             <div>
