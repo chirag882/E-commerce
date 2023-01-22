@@ -1,3 +1,4 @@
+import Chart from 'chart.js/auto';
 import React, { useEffect } from "react";
 import Sidebar from "./Sidebar.js";
 import "./dashboard.css";
