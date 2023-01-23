@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect } from "react";
-// import { DataGrid } from '@mui/x-data-grid';
+import { DataGrid } from '@mui/x-data-grid';
 import "./myOrders.css";
 import { useSelector, useDispatch } from "react-redux";
 import { clearErrors, myOrders } from "../../actions/orderAction";
@@ -94,14 +94,14 @@ const MyOrders = () => {
       ) : (
         
         <div className="myOrdersPage">
-          {/* <DataGrid
+          <DataGrid
             rows={rows}
             columns={columns}
             pageSize={10}
             disableSelectionOnClick
             className="myOrdersTable"
             autoHeight
-          /> */}
+          />
 
           <Typography id="myOrdersHeading">{user?.name}'s Orders</Typography>
         </div>

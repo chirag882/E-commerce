@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect } from "react";
-//import { DataGrid } from "@material-ui/data-grid";
+import { DataGrid } from "@mui/x-data-grid";
 import "./productList.css";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -125,14 +125,14 @@ const ProductList = () => {
         <div className="productListContainer">
           <h1 id="productListHeading">ALL PRODUCTS</h1>
 
-          {/* <DataGrid
+          <DataGrid
             rows={rows}
             columns={columns}
             pageSize={10}
             disableSelectionOnClick
             className="productListTable"
             autoHeight
-          /> */}
+          />
         </div>
       </div>
     </Fragment>
