@@ -5,7 +5,6 @@ import {
   Switch,
 } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Outlet, Navigate } from "react-router-dom";
 import "./App.css";
 import Header from "./component/layout/Header/Header.js";
 import WebFont from "webfontloader";
@@ -51,10 +50,6 @@ function App() {
 
   const [stripeApiKey, setStripeApiKey] = useState("");
 
-  const StripeLayout = ({ stripeApiKey }) => {
-    return stripeApiKey ? <Outlet /> : <Navigate to="/" replace />;
-  };
-
   async function getStripeApiKey() {
     const { data } = await axios.get("/api/v1/stripeapikey");
     setStripeApiKey(data.stripeApiKey);
@@ -72,11 +67,6 @@ function App() {
     getStripeApiKey();
   }, []);
 
-  const stripePromise = loadStripe("pk_test_51MT8RNSBQfnh0mGEfO084NTeaM9veeYQNRYao6HH7pFXLRF9Adw4DR4MLYwj0GKCZsVRX3lfZwOEPbhBgVjZvFDJ00n2XymSuF");
-  // useEffect(() => {
-  //   stripePromise = loadStripe(stripeApiKey);
-  // }, [stripeApiKey]);
-
   return (
     <Router>
       <Header />
@@ -91,17 +81,20 @@ function App() {
         <Route exact path="/account" element={<Profile />} />
         <Route exact path="/password/update" element={<UpdatePassword />} />
         <Route exact path="login/shipping" element={<Shipping />} />
-        <Route element={<StripeLayout {...{ stripeApiKey }} />}>
-          <Route
-            path="/order/payment"
-            element={
-              <Elements stripe={stripePromise}>
-                <Payment />
-              </Elements>
-            }
-          />
-        </Route>
 
+        <Route
+          exact
+          path="/process/payment"
+          element={
+            <Elements stripe={loadStripe()}>
+              <Payment />
+            </Elements>
+          }
+        />
+        {/* {stripeApiKey && (
+        <Elements stripe={loadStripe(stripeApiKey)}>
+        </Elements>
+      )} */}
         <Route exact path="/success" element={<OrderSuccess />} />
         <Route exact path="/orders" element={<MyOrders />} />
         {/* <Switch></Switch> */}
