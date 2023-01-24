@@ -50,10 +50,10 @@ function App() {
 
   const [stripeApiKey, setStripeApiKey] = useState("");
 
-  async function getStripeApiKey() {
-    const { data } = await axios.get("/api/v1/stripeapikey");
-    setStripeApiKey(data.stripeApiKey);
-  }
+  // async function getStripeApiKey() {
+  //   const { data } = await axios.get("/api/v1/stripeapikey");
+  //   setStripeApiKey(data.stripeApiKey);
+  // }
 
   useEffect(() => {
     WebFont.load({
@@ -64,7 +64,7 @@ function App() {
 
     store.dispatch(loadUser());
 
-    getStripeApiKey();
+    // getStripeApiKey();
   }, []);
 
   return (
@@ -82,7 +82,7 @@ function App() {
         <Route exact path="/password/update" element={<UpdatePassword />} />
         <Route exact path="login/shipping" element={<Shipping />} />
 
-        <Route
+        {/* <Route
           exact
           path="/process/payment"
           element={
@@ -90,7 +90,7 @@ function App() {
               <Payment />
             </Elements>
           }
-        />
+        /> */}
         {/* {stripeApiKey && (
         <Elements stripe={loadStripe(stripeApiKey)}>
         </Elements>
@@ -105,9 +105,9 @@ function App() {
         <Route exact path="/admin/product" element={<NewProduct />} />
         <Route exact path="/admin/product/:id" element={<UpdateProduct />} />
         <Route exact path="/admin/orders" element={<OrderList />} />
-        <Route exact path="/admin/orders/:id" element={<ProcessOrder />} />
+        <Route exact path="/admin/order/:id" element={<ProcessOrder />} />
         <Route exact path="/admin/users" element={<UsersList />} />
-        <Route exact path="/admin/users/:id" element={<UpdateUser />} />
+        <Route exact path="/admin/user/:id" element={<UpdateUser />} />
         <Route exact path="/admin/reviews" element={<ProductReviews />} />
 
         <Route exact path="/password/forgot" element={<ForgotPassword />} />

@@ -1,5 +1,6 @@
 import React, { Fragment, useRef, useState, useEffect } from "react";
 import "./LoginSignUp.css";
+// import profilepic from "../../../images/Profile.png"
 import Loader from "../layout/Loader/Loader";
 import { Link, useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";

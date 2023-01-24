@@ -14,12 +14,13 @@ import {
   clearErrors,
 } from "../../actions/userAction";
 import Loader from "../layout/Loader/Loader";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const UpdateUser = ({ match }) => {
   const dispatch = useDispatch();
   const alert = useAlert();
   const navigate = useNavigate()
+  const params = useParams()
 
   const { loading, error, user } = useSelector((state) => state.userDetails);
 
@@ -33,7 +34,7 @@ const UpdateUser = ({ match }) => {
   const [email, setEmail] = useState("");
   const [role, setRole] = useState("");
 
-  const userId = match.params.id;
+  const userId = params.id;
 
   useEffect(() => {
     if (user && user._id !== userId) {
