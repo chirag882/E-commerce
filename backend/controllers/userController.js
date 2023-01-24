@@ -3,10 +3,18 @@ const catchAsyncErrors = require("../middleware/catchAsyncError");
 const User = require("../models/userModel");
 const sendEmail = require("../utils/sendEmail");
 const sendToken = require("../utils/jwtToken");
+const cloudinary = require("cloudinary");
 const crypto = require("crypto");
 
 // Register User
 exports.registerUser = catchAsyncErrors(async (req, res, next) => {
+  
+  const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
+    folder: "avatars",
+    width: 150,
+    crop: "scale",
+  });
+  
   const { name, email, password } = req.body;
 
   const user = await User.create({
@@ -14,8 +22,8 @@ exports.registerUser = catchAsyncErrors(async (req, res, next) => {
     email,
     password,
     avatar: {
-      public_id: "This is a sample ID",
-      url: "hdnksmakfm",
+      public_id: myCloud.public_id,
+      url: myCloud.url,
     },
   });
 
@@ -219,14 +227,6 @@ exports.getSingleUser = catchAsyncErrors(async (req, res, next) => {
 
 // update User Role -- Admin
 exports.updateUserRole = catchAsyncErrors(async (req, res, next) => {
-  
-  const user = await User.findById(req.params.id);
-
-  if (!user) {
-    return next(
-      new ErrorHandler(`User does not exist with Id: ${req.params.id}`, 400)
-    );
-  }
   
   const newUserData = {
     name: req.body.name,
