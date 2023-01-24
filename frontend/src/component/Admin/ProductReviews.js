@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
-// import { DataGrid } from "@material-ui/data-grid";
+import { DataGrid } from "@mui/x-data-grid";
 import "./productReviews.css";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -164,7 +164,7 @@ const ProductReviews = () => {
             </Button>
           </form>
 
-          {/* {reviews && reviews.length > 0 ? (
+          {reviews && reviews.length > 0 ? (
             <DataGrid
               rows={rows}
               columns={columns}
@@ -175,7 +175,7 @@ const ProductReviews = () => {
             />
           ) : (
             <h1 className="productReviewsFormHeading">No Reviews Found</h1>
-          )} */}
+          )}
         </div>
       </div>
     </Fragment>
